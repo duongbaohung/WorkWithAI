@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp"
+    tools:context=".Activities.AIAnswerActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header: Subject and Difficulty -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvSubjectTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#E0E0E0"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Mathematics"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvDifficultyTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="#E3F2FD"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Level: Intermediate"
+                android:textColor="#1565C0"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Formulas & Concepts Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Concepts &amp; Formulas Used"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/tvConcepts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="24dp"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp"
+            tools:text="Quadratic Formula: x = (-b ± √(b² - 4ac)) / 2a" />
+
+        <!-- Step-by-Step Explanation Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Step-by-Step Solution"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/tvSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B5E4EB"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="24dp"
+            android:textSize="16sp"
+            android:lineSpacingExtra="6dp"
+            tools:text="Step 1: Identify a, b, and c.\nStep 2: Plug into formula..." />
+
+        <!-- Final Answer Highlight Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#98C7ED"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="32dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Final Answer"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvFinalAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E20"
+                tools:text="x = 4, x = -2" />
+        </LinearLayout>
+
+        <!-- Progress/Loading Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#BAD6ED">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:src="@drawable/sgalaxy"
+            android:contentDescription="Samsung Galaxy"
+            android:id="@+id/img_samsung"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_phone"
+            android:id="@+id/icon_phone"
+            android:contentDescription="Icon"
+            android:layout_toRightOf="@+id/img_samsung"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_price"
+            android:id="@+id/icon_price"
+            android:contentDescription="Icon"
+            android:layout_toRightOf="@+id/img_samsung"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_phone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ram"
+            android:id="@+id/icon_ram"
+            android:contentDescription="Icon"
+            android:layout_toRightOf="@+id/img_samsung"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_price" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_color"
+            android:id="@+id/icon_color"
+            android:contentDescription="Icon"
+            android:layout_toRightOf="@+id/img_samsung"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_ram" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Samsung Galaxy s25"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_phone"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1200"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_price"
+            android:layout_below="@+id/icon_phone"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Gb"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_ram"
+            android:layout_below="@+id/icon_price"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White Pearl"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_color"
+            android:layout_below="@+id/icon_ram"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:src="@drawable/sgalaxy"
+            android:contentDescription="Samsung Galaxy1"
+            android:id="@+id/img_samsung1"
+            android:layout_below="@id/icon_color"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/gridSpace"
+            android:layout_below="@+id/icon_color"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:src="@drawable/sgalaxy"
+            android:contentDescription="Samsung Galaxy2"
+            android:id="@+id/img_samsung2"
+            android:layout_below="@id/icon_color"
+            android:layout_toRightOf="@+id/gridSpace"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_phone"
+            android:id="@+id/icon_phone1"
+            android:contentDescription="Icon"
+            android:layout_below="@+id/img_samsung1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_price"
+            android:id="@+id/icon_price1"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_phone1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ram"
+            android:id="@+id/icon_ram1"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_price1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_color"
+            android:id="@+id/icon_color1"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_ram1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Samsung Galaxy s25"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_phone1"
+            android:layout_below="@+id/img_samsung1"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1200"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_price1"
+            android:layout_below="@+id/icon_phone1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Gb"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_ram1"
+            android:layout_below="@+id/icon_price1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White Pearl"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_color1"
+            android:layout_below="@+id/icon_ram1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+<!---->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_phone"
+            android:id="@+id/icon_phone2"
+            android:contentDescription="Icon"
+            android:layout_toRightOf="@id/gridSpace"
+            android:layout_below="@+id/img_samsung2"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_price"
+            android:id="@+id/icon_price2"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_phone2"
+            android:layout_toRightOf="@id/gridSpace"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ram"
+            android:id="@+id/icon_ram2"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_price2"
+            android:layout_toRightOf="@id/gridSpace"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_color"
+            android:id="@+id/icon_color2"
+            android:contentDescription="Icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icon_ram2"
+            android:layout_toRightOf="@id/gridSpace"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Samsung Galaxy s25"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_phone2"
+            android:layout_below="@+id/img_samsung1"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1200"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_price2"
+            android:layout_below="@+id/icon_phone1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Gb"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_ram2"
+            android:layout_below="@+id/icon_price1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White Pearl"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon_color2"
+            android:layout_below="@+id/icon_ram1"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"/>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BTEC FPT Edu"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:id="@+id/tvSchool"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/btec_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_below="@+id/tvSchool"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/bteclogo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Login"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/btec_logo"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/login"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F0D5AC"
+        android:layout_marginTop="10dp"
+        android:hint="Enter Username"
+        android:paddingStart="10dp"
+        android:autofillHints="false"
+        android:inputType="text"
+        android:id="@+id/username"
+        android:layout_below="@+id/login"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F0D5AC"
+        android:layout_marginTop="10dp"
+        android:hint="Enter Password"
+        android:paddingStart="10dp"
+        android:autofillHints="false"
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:layout_below="@+id/username"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:background="#EB9A22"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/password"
+        android:id="@+id/btn_login"
+        android:layout_toLeftOf="@+id/tvSpace"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvSpace"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="#E7E2DB"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/password"
+        android:layout_toRightOf="@+id/tvSpace"
+        android:id="@+id/btn_cancel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you have an account?"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/btn_cancel"
+        android:id="@+id/tx1"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register new account"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/tx1"
+        android:id="@+id/tvRegister"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
