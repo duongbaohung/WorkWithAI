@@ -3,6 +3,7 @@ package com.example.workwithai.Fragments;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +18,35 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.workwithai.Adapters.QuizAdapter;
+import com.example.workwithai.Models.QuestionModel;
 import com.example.workwithai.R;
+import com.example.workwithai.Repositories.QuestionRepository;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class QuizFragment extends Fragment {
 
     private RecyclerView rvQuiz;
     private Button btnGenerateQuiz;
     private LinearLayout llLoading;
+    private final String apiKey = "AIzaSyC7t-TsIWIhulvKYiJnsmFhfgqhXu_NRK8";
+
+    /**
+     * MODEL NAME:
+     * Using 'gemini-1.5-flash' for production compatibility.
+     */
+    private final String modelName = "gemini-2.5-flash";
 
     public QuizFragment() {}
 
@@ -40,58 +59,78 @@ public class QuizFragment extends Fragment {
         btnGenerateQuiz = v.findViewById(R.id.btnGenerateQuiz);
         llLoading = v.findViewById(R.id.llLoading);
 
-        // When the button is clicked, start the simulation instead of the real API
-        btnGenerateQuiz.setOnClickListener(view -> simulateQuizGeneration());
+        btnGenerateQuiz.setOnClickListener(view -> generateAIQuiz());
 
         return v;
     }
 
-    private void simulateQuizGeneration() {
-        // Show the loading overlay
+    private void generateAIQuiz() {
+        QuestionRepository repo = new QuestionRepository(requireContext());
+        List<QuestionModel> history = repo.getAllHistory("", "All");
+
+        if (history.size() < 1) {
+            Toast.makeText(getContext(), "Ask at least one question first to generate a quiz!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         llLoading.setVisibility(View.VISIBLE);
 
-        // Simulate a 2-second network delay to act like the AI is "thinking"
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        // Prepare context from history
+        StringBuilder context = new StringBuilder();
+        for (int i = 0; i < Math.min(history.size(), 5); i++) {
+            context.append("Topic: ").append(history.get(i).getSubject())
+                    .append(". Question: ").append(history.get(i).getQuestionText()).append("\n");
+        }
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
             try {
-                // Create a mock JSON array of questions that perfectly matches
-                // the format the QuizAdapter is expecting
-                JSONArray quizArray = new JSONArray();
+                URL url = new URL("https://generativelanguage.googleapis.com/v1beta/models/" + modelName + ":generateContent?key=" + apiKey);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
 
-                // Question 1
-                JSONObject q1 = new JSONObject();
-                q1.put("question", "What is the derivative of x²?");
-                q1.put("options", new JSONArray(new String[]{"x", "2x", "x²", "2"}));
-                q1.put("answer", "2x");
-                q1.put("explanation", "Using the power rule, you multiply by the exponent and subtract 1 from the exponent.");
-                quizArray.put(q1);
+                String prompt = "Based on these previous study topics:\n" + context.toString() +
+                        "\nGenerate a 5-question quiz. Use JSON format only: " +
+                        "{\"questions\": [{\"type\": \"MCQ\", \"question\": \"...\", \"options\": [\"A\", \"B\", \"C\", \"D\"], \"answer\": \"Correct Option\", \"explanation\": \"...\"}]}";
 
-                // Question 2
-                JSONObject q2 = new JSONObject();
-                q2.put("question", "In programming, what does 'OOP' stand for?");
-                q2.put("options", new JSONArray(new String[]{"Object-Oriented Programming", "Only Output Prints", "Overly Obscure Processes", "Optical Output Protocol"}));
-                q2.put("answer", "Object-Oriented Programming");
-                q2.put("explanation", "OOP is a programming paradigm based on the concept of 'objects', which can contain data and code.");
-                quizArray.put(q2);
+                JSONObject body = new JSONObject();
+                JSONArray contents = new JSONArray();
+                contents.put(new JSONObject().put("parts", new JSONArray().put(new JSONObject().put("text", prompt))));
+                body.put("contents", contents);
 
-                // Question 3
-                JSONObject q3 = new JSONObject();
-                q3.put("question", "Which planet is known as the Red Planet?");
-                q3.put("options", new JSONArray(new String[]{"Venus", "Jupiter", "Mars", "Saturn"}));
-                q3.put("answer", "Mars");
-                q3.put("explanation", "Mars is often called the Red Planet because of iron oxide (rust) on its surface.");
-                quizArray.put(q3);
+                OutputStream os = conn.getOutputStream();
+                os.write(body.toString().getBytes("UTF-8"));
+                os.close();
 
-                // Hide the loading overlay and display the generated quiz list
-                llLoading.setVisibility(View.GONE);
-                displayQuiz(quizArray);
-                Toast.makeText(getContext(), "Mock Quiz Generated!", Toast.LENGTH_SHORT).show();
+                if (conn.getResponseCode() == 200) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) sb.append(line);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                llLoading.setVisibility(View.GONE);
-                Toast.makeText(getContext(), "Error creating mock quiz.", Toast.LENGTH_SHORT).show();
+                    JSONObject res = new JSONObject(sb.toString());
+                    String rawJson = res.getJSONArray("candidates").getJSONObject(0)
+                            .getJSONObject("content").getJSONArray("parts").getJSONObject(0).getString("text");
+
+                    rawJson = rawJson.replace("```json", "").replace("```", "").trim();
+                    JSONArray quizArray = new JSONObject(rawJson).getJSONArray("questions");
+
+                    handler.post(() -> {
+                        llLoading.setVisibility(View.GONE);
+                        displayQuiz(quizArray);
+                    });
+                }
+            } catch (Exception e) {
+                handler.post(() -> {
+                    llLoading.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Failed to generate quiz.", Toast.LENGTH_SHORT).show();
+                });
             }
-        }, 2000); // Wait for 2 seconds
+        });
     }
 
     private void displayQuiz(JSONArray questions) {
